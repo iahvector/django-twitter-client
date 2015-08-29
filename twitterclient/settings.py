@@ -20,7 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '24a%vzopl2nt4-s^(ub#6m8p0-6b9gkm8l$#(f3x$r7r0b6zyv'
+assert 'DJANGO_SECRET_KEY' in os.environ, 'Set DJANGO_SECRET_KEY \
+environment variable!'
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'twitterclient_core'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -100,3 +103,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Set twitter oauth keys
+assert 'TWITTER_CONSUMER_KEY' in os.environ, 'Set TWITTER_CONSUMER_KEY \
+environment variable!'
+TWITTER_CONSUMER_KEY = os.environ['TWITTER_CONSUMER_KEY']
+
+assert 'TWITTER_CONSUMER_SECRET' in os.environ, 'Set TWITTER_CONSUMER_SECRET \
+environment variable!'
+TWITTER_CONSUMER_SECRET = os.environ['TWITTER_CONSUMER_SECRET']
