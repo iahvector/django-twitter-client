@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.conf import settings
 from requests_oauthlib import OAuth1Session
 from django.core.urlresolvers import reverse
@@ -12,10 +12,6 @@ verify_account_url = 'https://api.twitter.com/1.1/account\
 user_time_line_url = 'https://api.twitter.com/1.1/statuses/user_timeline.json'
 twitter_consumer_key = settings.TWITTER_CONSUMER_KEY
 twitter_secret_Key = settings.TWITTER_CONSUMER_SECRET
-
-
-def index(request):
-    return render(request, 'core/index.html')
 
 
 def signIn(request):
