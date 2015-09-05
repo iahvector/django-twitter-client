@@ -1,1 +1,49 @@
-<a href="{% url 'signIn' %}">Sign in with twitter</a>
+<html>
+
+<head>
+  <title>
+    Django twitter client sample
+  </title>
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Optional theme -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  {% load staticfiles %}
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        {% if user_id %}
+        <img alt="twitter" class="img-circle img-responsive center-block" src="{{ image }}">
+        <br>
+        <p>{{ user_name }}</p>
+        <p>@{{ screen_name }}</p>
+        <a class="btn btn-danger btn-block" href="{% url 'sign_out' %}">Sign out</a> {% else %}
+        <img alt="twitter" class="img-circle img-responsive center-block" src="{% static 'twitter.png' %}">
+        <a class="btn btn-primary btn-block" href="{% url 'signIn' %}">Sign in with twitter</a> {% endif %}
+      </div>
+      <div class="col-md-10">
+        {% if time_line %} {% for tweet in time_line %}
+        <div class="bg-success">
+          <p class="text-primary">{{ tweet.text }}</p>
+          <p class="text-info">{{ tweet.created_at }}</p>
+        </div>
+        <br> {% endfor %} {% else %}
+        <div class="jumbotron">
+          <h1>Django twitter client sample</h1>
+          <p>A sample app that with django that signs in a user using twitter and retrieves their latest 5 tweets</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <br>
+</body>
+
+</html>

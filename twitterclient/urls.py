@@ -16,9 +16,12 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from . import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^core/', include('twitterclient_core.urls')),
     url(r'^$', views.index, name='index'),
+    url(r'^sign_out$', views.sign_out, name='sign_out'),
 ]
+urlpatterns += staticfiles_urlpatterns()

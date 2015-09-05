@@ -60,7 +60,12 @@ def twitter_callback(request):
     request.session['user_screen_name'] = user['screen_name']
     request.session['user_profile_image_url'] = user['profile_image_url']
 
-    return JsonResponse(user, safe=False)
+    if hasattr(settings, 'TWITTER_CALLBACK_REDIRECT_VIEW') \
+            and settings.TWITTER_CALLBACK_REDIRECT_VIEW:
+
+        return redirect(settings.TWITTER_CALLBACK_REDIRECT_VIEW)
+    else:
+        return JsonResponse(user, safe=False)
 
 
 def user_time_line(request):

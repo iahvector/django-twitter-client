@@ -103,6 +103,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
 
 # Set twitter oauth keys
 assert 'TWITTER_CONSUMER_KEY' in os.environ, 'Set TWITTER_CONSUMER_KEY \
@@ -112,3 +117,6 @@ TWITTER_CONSUMER_KEY = os.environ['TWITTER_CONSUMER_KEY']
 assert 'TWITTER_CONSUMER_SECRET' in os.environ, 'Set TWITTER_CONSUMER_SECRET \
 environment variable!'
 TWITTER_CONSUMER_SECRET = os.environ['TWITTER_CONSUMER_SECRET']
+
+# redirect view after twitter callback
+TWITTER_CALLBACK_REDIRECT_VIEW = 'index'

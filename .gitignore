@@ -58,3 +58,4 @@ docs/_build/
 target/
 
 db.sqlite3
+collected_static/
